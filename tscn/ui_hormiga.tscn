@@ -1,0 +1,92 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfr5j7r3npq7p"]
+
+[ext_resource type="Script" path="res://gd/ui_hormiga.gd" id="1_d25f0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7evd0"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="ui_hormiga" type="Control"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 100.0
+offset_bottom = 30.0
+size_flags_horizontal = 3
+script = ExtResource("1_d25f0")
+
+[node name="BORDE" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7evd0")
+
+[node name="container" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 2.0
+offset_right = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = -3
+
+[node name="top" type="HBoxContainer" parent="container"]
+layout_mode = 2
+
+[node name="nombre" type="Label" parent="container/top"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "HORMIGA"
+
+[node name="espacio" type="Label" parent="container/top"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 10
+text = "     "
+
+[node name="estado" type="Label" parent="container/top"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "LARVA"
+horizontal_alignment = 2
+
+[node name="sub" type="HBoxContainer" parent="container"]
+layout_mode = 2
+
+[node name="accion" type="Label" parent="container/sub"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "RECOLECTANDO"
+
+[node name="estado_recoleccion" type="Label" parent="container/sub"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "   "
+
+[node name="cantidad" type="Label" parent="container/sub"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "10"
+horizontal_alignment = 2

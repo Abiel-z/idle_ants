@@ -1,0 +1,435 @@
+[gd_scene load_steps=15 format=3 uid="uid://dr1swweovy0tw"]
+
+[ext_resource type="Script" path="res://gd/controller_labels_datos.gd" id="1_dkcxn"]
+[ext_resource type="Script" path="res://gd/FPS.gd" id="1_fjsky"]
+[ext_resource type="Script" path="res://gd/controller_botones.gd" id="1_iu8qm"]
+[ext_resource type="Script" path="res://gd/hud_salas.gd" id="3_g108p"]
+[ext_resource type="Script" path="res://gd/controller_logs_informacion.gd" id="4_6ru1i"]
+[ext_resource type="Script" path="res://gd/layout_lista_hormigas.gd" id="4_8mbj5"]
+[ext_resource type="PackedScene" uid="uid://dx3y3evq0k3dv" path="res://tscn/ui_boton_accion.tscn" id="4_fgdq3"]
+[ext_resource type="Script" path="res://gd/controller_logs_puntos.gd" id="4_xxn1a"]
+[ext_resource type="PackedScene" uid="uid://g634bnk7njfr" path="res://tscn/ui_punto_alimento.tscn" id="5_2tehr"]
+[ext_resource type="PackedScene" uid="uid://cfr5j7r3npq7p" path="res://tscn/ui_hormiga.tscn" id="5_j2ixq"]
+[ext_resource type="Script" path="res://gd/controller_botones_salas.gd" id="6_btven"]
+[ext_resource type="PackedScene" uid="uid://r232oo0w42ra" path="res://tscn/ui_boton_sala.tscn" id="7_k3b3j"]
+[ext_resource type="Script" path="res://gd/controller_botones_salas_desbloqueadas.gd" id="10_haubx"]
+[ext_resource type="PackedScene" uid="uid://cwo87e1ogx5id" path="res://tscn/ui_boton_sala_desbloqueada.tscn" id="11_s6f7v"]
+
+[node name="BASE" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="FONDO" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="FONDO"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="escena_principal" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HUD_1" type="Control" parent="escena_principal"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.75
+
+[node name="FPS" type="Label" parent="escena_principal/HUD_1"]
+layout_mode = 0
+offset_left = 209.0
+offset_top = 38.0
+offset_right = 249.0
+offset_bottom = 66.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "000"
+script = ExtResource("1_fjsky")
+
+[node name="hud_inventario" type="Control" parent="escena_principal/HUD_1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="escena_principal/HUD_1/hud_inventario"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.089
+anchor_top = 0.126
+anchor_right = 0.579
+anchor_bottom = 0.466
+offset_left = 0.306
+offset_top = 0.159996
+text = "HOLA HOLA COMO ESTAMOS PROBANDO PROBANDO"
+
+[node name="controller_labels_datos" type="HBoxContainer" parent="escena_principal/HUD_1/hud_inventario"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.085
+anchor_top = 0.148
+anchor_right = 0.648
+anchor_bottom = 0.535
+offset_left = 40.615
+offset_top = 21.096
+offset_right = 40.615
+offset_bottom = 21.096
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dkcxn")
+
+[node name="label_nombres" type="VBoxContainer" parent="escena_principal/HUD_1/hud_inventario/controller_labels_datos"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="lay_hormigas" type="BoxContainer" parent="escena_principal/HUD_1/hud_inventario/controller_labels_datos/label_nombres"]
+layout_mode = 2
+
+[node name="lay_label_titulos" type="VBoxContainer" parent="escena_principal/HUD_1/hud_inventario/controller_labels_datos/label_nombres/lay_hormigas"]
+layout_mode = 2
+
+[node name="label_titulo_cantidad_hormigas" type="Label" parent="escena_principal/HUD_1/hud_inventario/controller_labels_datos/label_nombres/lay_hormigas/lay_label_titulos"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 15
+text = "HORMIGAS"
+
+[node name="lay_label_sub_titulos" type="VBoxContainer" parent="escena_principal/HUD_1/hud_inventario/controller_labels_datos/label_nombres/lay_hormigas/lay_label_titulos"]
+layout_mode = 2
+
+[node name="label_titulo_huevo" type="Label" parent="escena_principal/HUD_1/hud_inventario/controller_labels_datos/label_nombres/lay_hormigas/lay_label_titulos/lay_label_sub_titulos"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "HUEVO"
+horizontal_alignment = 2
+
+[node name="label_titulo_larva" type="Label" parent="escena_principal/HUD_1/hud_inventario/controller_labels_datos/label_nombres/lay_hormigas/lay_label_titulos/lay_label_sub_titulos"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "LARVA"
+horizontal_alignment = 2
+
+[node name="label_titulo_pupa" type="Label" parent="escena_principal/HUD_1/hud_inventario/controller_labels_datos/label_nombres/lay_hormigas/lay_label_titulos/lay_label_sub_titulos"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "PUPA"
+horizontal_alignment = 2
+
+[node name="label_titulo_adulto" type="Label" parent="escena_principal/HUD_1/hud_inventario/controller_labels_datos/label_nombres/lay_hormigas/lay_label_titulos/lay_label_sub_titulos"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "ADULTO"
+horizontal_alignment = 2
+
+[node name="espacio" type="VBoxContainer" parent="escena_principal/HUD_1/hud_inventario/controller_labels_datos/label_nombres/lay_hormigas"]
+custom_minimum_size = Vector2(15, 0)
+layout_mode = 2
+
+[node name="lay_label_cantidad" type="VBoxContainer" parent="escena_principal/HUD_1/hud_inventario/controller_labels_datos/label_nombres/lay_hormigas"]
+layout_mode = 2
+
+[node name="label_cantidad_hormigas" type="Label" parent="escena_principal/HUD_1/hud_inventario/controller_labels_datos/label_nombres/lay_hormigas/lay_label_cantidad"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 15
+text = "0"
+
+[node name="label_cantidad_huevos" type="Label" parent="escena_principal/HUD_1/hud_inventario/controller_labels_datos/label_nombres/lay_hormigas/lay_label_cantidad"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "0"
+
+[node name="label_cantidad_larvas" type="Label" parent="escena_principal/HUD_1/hud_inventario/controller_labels_datos/label_nombres/lay_hormigas/lay_label_cantidad"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "0"
+
+[node name="label_cantidad_pupas" type="Label" parent="escena_principal/HUD_1/hud_inventario/controller_labels_datos/label_nombres/lay_hormigas/lay_label_cantidad"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "0"
+
+[node name="label_cantidad_adultos" type="Label" parent="escena_principal/HUD_1/hud_inventario/controller_labels_datos/label_nombres/lay_hormigas/lay_label_cantidad"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "0"
+
+[node name="lay_label_maximos" type="VBoxContainer" parent="escena_principal/HUD_1/hud_inventario/controller_labels_datos/label_nombres/lay_hormigas"]
+layout_mode = 2
+
+[node name="lab_max_hormigas" type="Label" parent="escena_principal/HUD_1/hud_inventario/controller_labels_datos/label_nombres/lay_hormigas/lay_label_maximos"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+
+[node name="lab_max_huevos" type="Label" parent="escena_principal/HUD_1/hud_inventario/controller_labels_datos/label_nombres/lay_hormigas/lay_label_maximos"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+
+[node name="lab_max_larva" type="Label" parent="escena_principal/HUD_1/hud_inventario/controller_labels_datos/label_nombres/lay_hormigas/lay_label_maximos"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+
+[node name="lab_max_pupa" type="Label" parent="escena_principal/HUD_1/hud_inventario/controller_labels_datos/label_nombres/lay_hormigas/lay_label_maximos"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+
+[node name="lab_max_adultas" type="Label" parent="escena_principal/HUD_1/hud_inventario/controller_labels_datos/label_nombres/lay_hormigas/lay_label_maximos"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="escena_principal/HUD_1/hud_inventario/controller_labels_datos/label_nombres"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="lay_comida" type="BoxContainer" parent="escena_principal/HUD_1/hud_inventario/controller_labels_datos/label_nombres"]
+layout_mode = 2
+
+[node name="lay_label_titulos" type="VBoxContainer" parent="escena_principal/HUD_1/hud_inventario/controller_labels_datos/label_nombres/lay_comida"]
+layout_mode = 2
+
+[node name="label_titulo_cantidad_comida" type="Label" parent="escena_principal/HUD_1/hud_inventario/controller_labels_datos/label_nombres/lay_comida/lay_label_titulos"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "COMIDA    "
+
+[node name="lay_label_sub_titulos" type="VBoxContainer" parent="escena_principal/HUD_1/hud_inventario/controller_labels_datos/label_nombres/lay_comida/lay_label_titulos"]
+layout_mode = 2
+
+[node name="label_titulo_azucar" type="Label" parent="escena_principal/HUD_1/hud_inventario/controller_labels_datos/label_nombres/lay_comida/lay_label_titulos/lay_label_sub_titulos"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "AZUCAR"
+horizontal_alignment = 2
+
+[node name="label_titulo_proteina" type="Label" parent="escena_principal/HUD_1/hud_inventario/controller_labels_datos/label_nombres/lay_comida/lay_label_titulos/lay_label_sub_titulos"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "PROTEINA"
+horizontal_alignment = 2
+
+[node name="espacio" type="VBoxContainer" parent="escena_principal/HUD_1/hud_inventario/controller_labels_datos/label_nombres/lay_comida"]
+custom_minimum_size = Vector2(15, 0)
+layout_mode = 2
+
+[node name="lay_label_cantidad" type="VBoxContainer" parent="escena_principal/HUD_1/hud_inventario/controller_labels_datos/label_nombres/lay_comida"]
+layout_mode = 2
+
+[node name="label_cantidad_comida" type="Label" parent="escena_principal/HUD_1/hud_inventario/controller_labels_datos/label_nombres/lay_comida/lay_label_cantidad"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "0"
+
+[node name="label_cantidad_azucar" type="Label" parent="escena_principal/HUD_1/hud_inventario/controller_labels_datos/label_nombres/lay_comida/lay_label_cantidad"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "0"
+
+[node name="label_cantidad_proteina" type="Label" parent="escena_principal/HUD_1/hud_inventario/controller_labels_datos/label_nombres/lay_comida/lay_label_cantidad"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "0"
+
+[node name="hud_salas" type="VBoxContainer" parent="escena_principal/HUD_1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.125
+anchor_top = 0.625
+anchor_right = 0.647
+anchor_bottom = 0.909
+script = ExtResource("3_g108p")
+
+[node name="lay_profundidad" type="HBoxContainer" parent="escena_principal/HUD_1/hud_salas"]
+layout_mode = 2
+
+[node name="titulo_profundidad" type="Label" parent="escena_principal/HUD_1/hud_salas/lay_profundidad"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "PROFUNDIDAD"
+
+[node name="espacio" type="Label" parent="escena_principal/HUD_1/hud_salas/lay_profundidad"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="profundidad" type="Label" parent="escena_principal/HUD_1/hud_salas/lay_profundidad"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "00"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="escena_principal/HUD_1/hud_salas"]
+layout_mode = 2
+
+[node name="HUD_2" type="Control" parent="escena_principal"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="hud_botones" type="Control" parent="escena_principal/HUD_2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="lay_controller_botones" type="HBoxContainer" parent="escena_principal/HUD_2/hud_botones"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.17
+anchor_right = 0.75
+anchor_bottom = 0.431
+
+[node name="controller_botones_player" type="VBoxContainer" parent="escena_principal/HUD_2/hud_botones/lay_controller_botones"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("1_iu8qm")
+boton_scene = ExtResource("4_fgdq3")
+
+[node name="controller_botones_salas" type="VBoxContainer" parent="escena_principal/HUD_2/hud_botones/lay_controller_botones"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("6_btven")
+boton_scene = ExtResource("7_k3b3j")
+
+[node name="scroll_lay_lista_hormigas" type="ScrollContainer" parent="escena_principal/HUD_2/hud_botones"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 0.45
+anchor_bottom = 0.909
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="layout_lista_hormigas" type="VBoxContainer" parent="escena_principal/HUD_2/hud_botones/scroll_lay_lista_hormigas"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("4_8mbj5")
+escena_hormiga = ExtResource("5_j2ixq")
+
+[node name="scroll_lay_lista_salas_construidas" type="ScrollContainer" parent="escena_principal/HUD_2/hud_botones"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.48
+anchor_top = 0.5
+anchor_right = 0.988
+anchor_bottom = 0.96
+
+[node name="controller_botones_salas_desbloqueadas" type="VBoxContainer" parent="escena_principal/HUD_2/hud_botones/scroll_lay_lista_salas_construidas"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("10_haubx")
+boton_scene = ExtResource("11_s6f7v")
+
+[node name="HUD_3" type="Control" parent="escena_principal"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="scroll_log_puntos" type="ScrollContainer" parent="escena_principal/HUD_3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.057
+anchor_right = 0.794
+anchor_bottom = 0.422
+
+[node name="controller_logs_puntos" type="VBoxContainer" parent="escena_principal/HUD_3/scroll_log_puntos"]
+layout_mode = 2
+script = ExtResource("4_xxn1a")
+escena_punto = ExtResource("5_2tehr")
+
+[node name="label_titulo_puntos" type="Label" parent="escena_principal/HUD_3/scroll_log_puntos/controller_logs_puntos"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 15
+text = "PUNTOS"
+
+[node name="lay_display_puntos" type="Control" parent="escena_principal/HUD_3/scroll_log_puntos/controller_logs_puntos"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="txt_display_puntos" type="RichTextLabel" parent="escena_principal/HUD_3/scroll_log_puntos/controller_logs_puntos/lay_display_puntos"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+fit_content = true
+
+[node name="controller_logs_informacion" type="VBoxContainer" parent="escena_principal/HUD_3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.533
+anchor_right = 0.864
+anchor_bottom = 0.898
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_6ru1i")
+
+[node name="label_titulo_informacion" type="Label" parent="escena_principal/HUD_3/controller_logs_informacion"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 15
+text = "INFORMACION"
+
+[node name="lay_display_informacion" type="Control" parent="escena_principal/HUD_3/controller_logs_informacion"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="scroll_controller_logs_informacion" type="ScrollContainer" parent="escena_principal/HUD_3/controller_logs_informacion/lay_display_informacion"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="txt_display_informacion" type="RichTextLabel" parent="escena_principal/HUD_3/controller_logs_informacion/lay_display_informacion/scroll_controller_logs_informacion"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+fit_content = true

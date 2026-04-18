@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SalaData" load_steps=2 format=3 uid="uid://3i3roimubl2e"]
+
+[ext_resource type="Script" path="res://gd/salaData.gd" id="1_u2t77"]
+
+[resource]
+script = ExtResource("1_u2t77")
+id = 1
+nombre = "Depósito de alimentos"
+producto_desbloqueo = "comida"
+estado = 0
+profundidad_desbloqueo = 5
+costo = 15
+material_restante = 60.0
+descripcion = ""

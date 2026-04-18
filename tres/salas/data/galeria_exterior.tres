@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SalaData" load_steps=2 format=3 uid="uid://cdtqdis6hfmpd"]
+
+[ext_resource type="Script" path="res://gd/salaData.gd" id="1_ygfvh"]
+
+[resource]
+script = ExtResource("1_ygfvh")
+id = 2
+nombre = "Galería exterior"
+producto_desbloqueo = ""
+estado = 0
+profundidad_desbloqueo = 10
+costo = 20
+material_restante = 60.0
+descripcion = ""

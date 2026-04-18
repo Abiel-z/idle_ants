@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://g634bnk7njfr"]
+
+[ext_resource type="Script" path="res://gd/ui_punto_alimento.gd" id="1_x2hfk"]
+
+[node name="ui_punto_alimento" type="HBoxContainer"]
+script = ExtResource("1_x2hfk")
+
+[node name="nombre" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+
+[node name="cantidad" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+
+[node name="distancia" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
