@@ -38,7 +38,7 @@ var hambre := 10.0
 var salud := 100.0
 
 var consumo_por_tick := 0.1
-var mordisco_por_tick := 1
+var mordisco_por_tick := 0.5
 var hambre_max := 10.0
 
 var en_exterior := false
@@ -144,11 +144,11 @@ func idle():
 	if hambre < 5 and not en_exterior:
 		iniciar_comer()
 		return
-	if randf() < 0.9:
+	if randf() < 0.05:
 		if get_salas_por_construir() != null:
 			iniciar_excavacion()
 			return
-	if randf() < 0.05:
+	if randf() < 0.10:
 		iniciar_exploracion()
 		return
 	var punto = ControllerForrajeo.obtener_punto()
