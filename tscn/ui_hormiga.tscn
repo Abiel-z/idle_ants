@@ -16,13 +16,13 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="ui_hormiga" type="Control"]
+[node name="ui_hormiga" type="Button"]
 custom_minimum_size = Vector2(100, 30)
-layout_mode = 3
-anchors_preset = 0
 offset_right = 100.0
 offset_bottom = 30.0
 size_flags_horizontal = 3
+toggle_mode = true
+flat = true
 script = ExtResource("1_d25f0")
 
 [node name="BORDE" type="Panel" parent="."]
@@ -68,22 +68,93 @@ theme_override_font_sizes/font_size = 8
 text = "LARVA"
 horizontal_alignment = 2
 
-[node name="sub" type="HBoxContainer" parent="container"]
+[node name="sub" type="Control" parent="container"]
 layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
 
-[node name="accion" type="Label" parent="container/sub"]
+[node name="lay_barra" type="Control" parent="container/sub"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="container_barra" type="HBoxContainer" parent="container/sub/lay_barra"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.091
+anchor_right = 1.0
+anchor_bottom = 0.731
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="barra_recolectar" type="ColorRect" parent="container/sub/lay_barra/container_barra"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0, 0, 0, 1)
+
+[node name="texto_recolectar" type="Label" parent="container/sub/lay_barra/container_barra/barra_recolectar"]
+layout_mode = 0
+offset_top = 1.453
+offset_right = 40.0
+offset_bottom = 24.453
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 5
+text = "RECOLECTAR"
+
+[node name="barra_explorar" type="ColorRect" parent="container/sub/lay_barra/container_barra"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0, 0, 0, 1)
+
+[node name="texto_explorar" type="Label" parent="container/sub/lay_barra/container_barra/barra_explorar"]
+layout_mode = 0
+offset_top = 1.453
+offset_right = 40.0
+offset_bottom = 24.453
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 5
+text = "EXPLORAR"
+
+[node name="barra_construir" type="ColorRect" parent="container/sub/lay_barra/container_barra"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0, 0, 0, 1)
+
+[node name="texto_construir" type="Label" parent="container/sub/lay_barra/container_barra/barra_construir"]
+layout_mode = 0
+offset_top = 1.453
+offset_right = 40.0
+offset_bottom = 24.453
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 5
+text = "CONSTRUIR"
+
+[node name="textos" type="HBoxContainer" parent="container/sub"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="accion" type="Label" parent="container/sub/textos"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 8
 text = "RECOLECTANDO"
 
-[node name="estado_recoleccion" type="Label" parent="container/sub"]
+[node name="estado_recoleccion" type="Label" parent="container/sub/textos"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 10
 text = "   "
 
-[node name="cantidad" type="Label" parent="container/sub"]
+[node name="cantidad" type="Label" parent="container/sub/textos"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)

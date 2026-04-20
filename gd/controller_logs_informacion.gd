@@ -28,7 +28,7 @@ func _scroll_abajo():
 	txt_display_informacion.scroll_to_line(txt_display_informacion.get_line_count())
 
 func _on_sala_desbloqueada(sala):
-	agregar_log("Ahora puedes construir : " + sala)
+	agregar_log("Ahora puedes construir : " + sala.nombre)
 
 func _on_error_entrega(causa):
 	agregar_log(causa)

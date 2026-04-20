@@ -1,14 +1,20 @@
 extends Node
 
-var profundidad := 0.0
+signal sala_desbloqueada
+
+var profundidad : int = 0
 
 var salas_disponibles : Array[SalaData] = []
 var salas_en_construccion : Array[SalaData] = []
+var salas_desbloqueadas : Array[SalaData] = []
 
 func _ready():
 	cargar_salas()
 
 func _process(delta):
+	for sala in salas_disponibles:
+		if sala.estado == SalaData.Estado.BLOQUEADA and profundidad >= sala.profundidad_desbloqueo:
+			emit_signal("sala_desbloqueada")
 	get_salas_en_construccion()
 
 func excavar(cantidad):

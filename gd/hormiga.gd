@@ -38,15 +38,19 @@ var hambre := 10.0
 var salud := 100.0
 
 var consumo_por_tick := 0.1
-var mordisco_por_tick := 0.5
+var mordisco_por_tick : float = 0.5
 var hambre_max := 10.0
+
+# --- VARIABLES PRIORIDADES ---
+var prioridad_recolectar := 0.34
+var prioridad_explorar := 0.33
+var prioridad_construir := 0.33
 
 var en_exterior := false
 var muerta := false
 
 var buff_recoleccion := 1.0
 var sala_seleccionada : SalaData = null 
-
 
 # -- FUNCIONES CONTROL --
 func _init():
@@ -130,30 +134,34 @@ func die():
 # -- FUNCIONES VITALES --
 
 func get_salas_por_construir() -> Array:
-	var lista_en_construccion : Array = []
-	var salas_disponibles = ControllerExcavacion.salas_disponibles
-	for sala in salas_disponibles:
+	var lista := []
+	for sala in ControllerExcavacion.salas_disponibles:
 		if sala.estado == SalaData.Estado.EN_CONSTRUCCION:
-			lista_en_construccion.append(sala)
-			return lista_en_construccion
-	return lista_en_construccion
+			lista.append(sala)
+	return lista
 
 # --- FUNCIONES IDLE --- 
 func idle():
-	
 	if hambre < 5 and not en_exterior:
 		iniciar_comer()
 		return
-	if randf() < 0.05:
-		if get_salas_por_construir() != null:
+	elegir_accion()
+	
+func elegir_accion():
+	var total = prioridad_recolectar + prioridad_explorar + prioridad_construir
+	var r = randf() * total
+	
+	if r < prioridad_construir:
+		if get_salas_por_construir().size() > 0:
 			iniciar_excavacion()
 			return
-	if randf() < 0.10:
+	if r < prioridad_construir + prioridad_explorar:
 		iniciar_exploracion()
 		return
-	var punto = ControllerForrajeo.obtener_punto()
-	if punto != null:
-		asignar_punto(punto)
+	else:
+		var punto = ControllerForrajeo.obtener_punto()
+		if punto != null:
+			asignar_punto(punto)
 # --- FUNCIONES IDLE --- 
 
 # -- FUCNIONES EXPLORACION --
@@ -273,9 +281,7 @@ func seleccionar_sala():
 		return
 	sala_seleccionada = ControllerExcavacion.salas_en_construccion.pick_random()
 
-
 func excavar(sala : SalaData):
-	# RECIBIR SALA A EXCAVAR EN SALAS_DISPONIBLES
 	var sala_elegida = sala
 	if sala_elegida == null:
 		return

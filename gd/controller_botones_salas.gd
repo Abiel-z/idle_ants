@@ -1,6 +1,5 @@
 extends VBoxContainer
 
-signal sala_desbloqueada(sala: SalaData)
 signal construccion_iniciada(sala: SalaData)
 
 @export var boton_scene : PackedScene
@@ -9,15 +8,13 @@ var salas_disponibles : Array[SalaData] = []
 var botones := {}
 
 func _ready():
+	ControllerExcavacion.connect("sala_desbloqueada", _check_desbloqueos)
 	salas_disponibles = ControllerExcavacion.salas_disponibles
 	for sala in salas_disponibles:
 		sala.connect("datos_cambiados" , _check_desbloqueos)
 
-func _process(delta):
-	_check_desbloqueos()
-
 func crear_boton(sala: SalaData, callback: Callable, contenedor: Node):
-	if sala in botones:
+	if sala.id in botones:
 		return
 	
 	var boton = boton_scene.instantiate()
@@ -27,6 +24,8 @@ func crear_boton(sala: SalaData, callback: Callable, contenedor: Node):
 	botones[sala.id] = boton
 	
 func _check_desbloqueos():
+	print("SALAS DISPONIBLES")
+	print(salas_disponibles)
 	for sala in salas_disponibles:
 		if sala.estado != SalaData.Estado.BLOQUEADA:
 			continue
@@ -35,7 +34,7 @@ func _check_desbloqueos():
 			desbloquear_sala(sala)
 
 func desbloquear_sala(sala: SalaData):
-	emit_signal("sala_desbloqueada", sala.nombre)
+	emit_signal("sala_desbloqueada", sala)
 	crear_boton(
 		sala,
 		func():comprar_sala(sala),

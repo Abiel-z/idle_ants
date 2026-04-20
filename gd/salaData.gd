@@ -16,12 +16,13 @@ enum Estado {
 @export var estado := Estado.BLOQUEADA
 @export var profundidad_desbloqueo : int = 0
 @export var costo : int = 100
+@export var material_total : float = 60
 @export var material_restante : float = 60
 @export var descripcion : String
 
 func aplicar_efecto():
 	pass
-	
+
 func terminar_sala():
 	if material_restante <= 0:
 		estado = SalaData.Estado.CONSTRUIDA

@@ -5,6 +5,7 @@ extends Button
 @onready var lab_estado = $general/vertical/horizontal_1/estado
 @onready var lab_materia_restante = $general/vertical/horizontal_2/materia_restante
 @onready var lab_cantidad = $general/vertical/horizontal_2/cantidad
+@onready var barra_progreso = $general/vertical/horizontal_3/barra_progreso
 
 var data : SalaData
 
@@ -49,10 +50,16 @@ func _on_data_changed():
 	actualizar()
 
 func actualizar():
-	print("ACTUALIZANDO SALA EN CONSTRUCCION", data.id)
 	if not data:
 		return
+		
 	if data.estado == SalaData.Estado.EN_CONSTRUCCION :
+		
+		barra_progreso.visible = true
+		var progreso_restante : float = 1.0 - (data.material_restante / data.material_total)
+		barra_progreso.value = progreso_restante * 100
+		
+		
 		lab_nombre.text = data.nombre
 		lab_estado.text = estado_a_texto(data.estado)
 		
@@ -64,6 +71,6 @@ func actualizar():
 	if data.estado == SalaData.Estado.CONSTRUIDA:
 		lab_nombre.text = data.nombre
 		lab_estado.text = estado_a_texto(data.estado)
-		
+		barra_progreso.visible = false
 		lab_cantidad.visible = false
 		lab_materia_restante.visible = false
