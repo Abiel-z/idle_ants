@@ -42,9 +42,10 @@ var mordisco_por_tick : float = 0.5
 var hambre_max := 10.0
 
 # --- VARIABLES PRIORIDADES ---
-var prioridad_recolectar := 0.34
-var prioridad_explorar := 0.33
-var prioridad_construir := 0.33
+var prioridad_deambular := 0.70
+var prioridad_recolectar := 0.175
+var prioridad_explorar := 0.025
+var prioridad_construir := 0.05
 
 var en_exterior := false
 var muerta := false
@@ -52,15 +53,8 @@ var muerta := false
 var buff_recoleccion := 1.0
 var sala_seleccionada : SalaData = null 
 
-# -- FUNCIONES CONTROL --
-func _init():
-	acumulador = randf() * intervalo
-
-func update(delta):
-	acumulador += delta
-	if acumulador >= intervalo:
-		acumulador -= intervalo
-		tick()
+func _on_tick():
+	tick()
 
 func tick():
 	edad += 1
@@ -130,7 +124,8 @@ func die():
 		return
 	muerta = true
 	estado = Estado.MUERTA
-	print("LA HORMIGA MURIÓ")
+	if ManagerTime and ManagerTime.tick.is_connected(_on_tick):
+		ManagerTime.tick.disconnect(_on_tick)
 # -- FUNCIONES VITALES --
 
 func get_salas_por_construir() -> Array:

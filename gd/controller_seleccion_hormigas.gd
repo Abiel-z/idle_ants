@@ -5,7 +5,7 @@ signal seleccion_cambiada(hormigas)
 var hormigas_seleccionadas := []
 
 @onready var layout = $layout_lista_hormigas
-@onready var ui_sliders = get_node("/root/BASE/escena_principal/HUD_1/ui_sliders")
+@onready var ui_sliders = get_node("/root/BASE/escena_principal/HUD_2/ui_sliders")
 
 
 var ignorar_actualizacion := false

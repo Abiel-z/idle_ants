@@ -2,6 +2,7 @@
 .godot/
 .import/
 .export/
+/export/
 .export_presets.cfg
 *.tmp
 *.log

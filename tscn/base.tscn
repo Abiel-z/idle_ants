@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dr1swweovy0tw"]
+[gd_scene load_steps=18 format=3 uid="uid://dr1swweovy0tw"]
 
 [ext_resource type="Script" path="res://gd/controller_labels_datos.gd" id="1_dkcxn"]
 [ext_resource type="Script" path="res://gd/FPS.gd" id="1_fjsky"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://gd/controller_botones_salas_desbloqueadas.gd" id="10_haubx"]
 [ext_resource type="PackedScene" uid="uid://cwo87e1ogx5id" path="res://tscn/ui_boton_sala_desbloqueada.tscn" id="11_s6f7v"]
 [ext_resource type="PackedScene" uid="uid://cc76xwd4bvmf8" path="res://tscn/ui_sliders.tscn" id="15_r0baw"]
+[ext_resource type="Script" path="res://gd/controller_labels_tiempo.gd" id="17_ojuur"]
 
 [node name="BASE" type="Control"]
 layout_mode = 3
@@ -43,6 +44,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.716296, 0.716296, 0.716296, 1)
+
 [node name="escena_principal" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -57,11 +67,39 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.75
 mouse_filter = 2
 
-[node name="ui_sliders" parent="escena_principal/HUD_1" instance=ExtResource("15_r0baw")]
-offset_left = 158.0
-offset_top = 341.0
-offset_right = 258.0
-offset_bottom = 441.0
+[node name="hud_salas" type="VBoxContainer" parent="escena_principal/HUD_1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.125
+anchor_top = 0.625
+anchor_right = 0.647
+anchor_bottom = 0.856
+offset_left = 23.0
+offset_top = -137.0
+offset_right = 23.0
+offset_bottom = -137.0
+script = ExtResource("3_g108p")
+
+[node name="lay_profundidad" type="HBoxContainer" parent="escena_principal/HUD_1/hud_salas"]
+layout_mode = 2
+
+[node name="titulo_profundidad" type="Label" parent="escena_principal/HUD_1/hud_salas/lay_profundidad"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "PROFUNDIDAD"
+
+[node name="espacio" type="Label" parent="escena_principal/HUD_1/hud_salas/lay_profundidad"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="profundidad" type="Label" parent="escena_principal/HUD_1/hud_salas/lay_profundidad"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "00"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="escena_principal/HUD_1/hud_salas"]
+layout_mode = 2
 
 [node name="FPS" type="Label" parent="escena_principal/HUD_1"]
 layout_mode = 0
@@ -261,45 +299,72 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 12
 text = "0"
 
-[node name="hud_salas" type="VBoxContainer" parent="escena_principal/HUD_1"]
+[node name="controller_logs_informacion" type="VBoxContainer" parent="escena_principal/HUD_1"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.125
-anchor_top = 0.625
+anchor_left = 0.177
+anchor_top = 0.488
 anchor_right = 0.647
-anchor_bottom = 0.856
-offset_left = 4.0
-offset_top = 62.0
-offset_right = 4.0
-offset_bottom = 62.0
-script = ExtResource("3_g108p")
+anchor_bottom = 0.945
+offset_left = -19.032
+offset_right = 88.968
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_6ru1i")
 
-[node name="lay_profundidad" type="HBoxContainer" parent="escena_principal/HUD_1/hud_salas"]
-layout_mode = 2
-
-[node name="titulo_profundidad" type="Label" parent="escena_principal/HUD_1/hud_salas/lay_profundidad"]
+[node name="label_titulo_informacion" type="Label" parent="escena_principal/HUD_1/controller_logs_informacion"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "PROFUNDIDAD"
+theme_override_font_sizes/font_size = 15
+text = "INFORMACION"
 
-[node name="espacio" type="Label" parent="escena_principal/HUD_1/hud_salas/lay_profundidad"]
+[node name="lay_display_informacion" type="Control" parent="escena_principal/HUD_1/controller_logs_informacion"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="scroll_controller_logs_informacion" type="ScrollContainer" parent="escena_principal/HUD_1/controller_logs_informacion/lay_display_informacion"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="txt_display_informacion" type="RichTextLabel" parent="escena_principal/HUD_1/controller_logs_informacion/lay_display_informacion/scroll_controller_logs_informacion"]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="profundidad" type="Label" parent="escena_principal/HUD_1/hud_salas/lay_profundidad"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
-text = "00"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="escena_principal/HUD_1/hud_salas"]
-layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+fit_content = true
 
 [node name="HUD_2" type="Control" parent="escena_principal"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="ui_sliders" parent="escena_principal/HUD_2" instance=ExtResource("15_r0baw")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.164
+anchor_top = 0.734
+anchor_right = 0.477
+anchor_bottom = 0.945
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="hud_botones" type="Control" parent="escena_principal/HUD_2"]
+layout_mode = 1
+anchor_left = 0.018
+anchor_top = 0.114
+anchor_right = 0.829
+anchor_bottom = 0.452
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="debugg_rect" type="ColorRect" parent="escena_principal/HUD_2/hud_botones"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -310,10 +375,11 @@ grow_vertical = 2
 [node name="lay_controller_botones" type="HBoxContainer" parent="escena_principal/HUD_2/hud_botones"]
 clip_contents = true
 layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.093
-anchor_right = 0.75
-anchor_bottom = 0.336
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="controller_botones_player" type="VBoxContainer" parent="escena_principal/HUD_2/hud_botones/lay_controller_botones"]
 layout_mode = 2
@@ -327,16 +393,30 @@ size_flags_horizontal = 3
 script = ExtResource("6_btven")
 boton_scene = ExtResource("7_k3b3j")
 
-[node name="lay_seleccion_homigas" type="Control" parent="escena_principal/HUD_2/hud_botones"]
+[node name="HUD_3" type="Control" parent="escena_principal"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="lay_seleccion_homigas" type="Control" parent="escena_principal/HUD_3"]
 layout_mode = 1
-anchor_left = 0.032
-anchor_top = 0.534
-anchor_right = 0.536
-anchor_bottom = 0.865
+anchor_left = 0.002
+anchor_top = 0.473
+anchor_right = 0.445
+anchor_bottom = 0.962
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="controller_seleccion_hormigas" type="ScrollContainer" parent="escena_principal/HUD_2/hud_botones/lay_seleccion_homigas"]
+[node name="debugg_rect" type="ColorRect" parent="escena_principal/HUD_3/lay_seleccion_homigas"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.917816, 0.922984, 1)
+
+[node name="controller_seleccion_hormigas" type="ScrollContainer" parent="escena_principal/HUD_3/lay_seleccion_homigas"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 1
 anchors_preset = 15
@@ -346,22 +426,37 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("9_jwwwe")
 
-[node name="layout_lista_hormigas" type="VBoxContainer" parent="escena_principal/HUD_2/hud_botones/lay_seleccion_homigas/controller_seleccion_hormigas"]
+[node name="layout_lista_hormigas" type="VBoxContainer" parent="escena_principal/HUD_3/lay_seleccion_homigas/controller_seleccion_hormigas"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("4_8mbj5")
 escena_hormiga = ExtResource("5_j2ixq")
 
-[node name="scroll_lay_lista_salas_construidas" type="ScrollContainer" parent="escena_principal/HUD_2/hud_botones"]
+[node name="lay_salas_desbloqueadas" type="Control" parent="escena_principal/HUD_3"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.547
-anchor_top = 0.5
-anchor_right = 0.988
-anchor_bottom = 0.96
+anchor_left = 0.463
+anchor_top = 0.47
+anchor_right = 0.933
+anchor_bottom = 0.968
 
-[node name="controller_botones_salas_desbloqueadas" type="VBoxContainer" parent="escena_principal/HUD_2/hud_botones/scroll_lay_lista_salas_construidas"]
+[node name="debugg_rect" type="ColorRect" parent="escena_principal/HUD_3/lay_salas_desbloqueadas"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="scroll_lay_lista_salas_construidas" type="ScrollContainer" parent="escena_principal/HUD_3/lay_salas_desbloqueadas"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="controller_botones_salas_desbloqueadas" type="VBoxContainer" parent="escena_principal/HUD_3/lay_salas_desbloqueadas/scroll_lay_lista_salas_construidas"]
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -369,34 +464,46 @@ size_flags_vertical = 3
 script = ExtResource("10_haubx")
 boton_scene = ExtResource("11_s6f7v")
 
-[node name="HUD_3" type="Control" parent="escena_principal"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="scroll_log_puntos" type="ScrollContainer" parent="escena_principal/HUD_3"]
+[node name="lay_log_puntos" type="Control" parent="escena_principal/HUD_3"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.25
-anchor_top = 0.057
-anchor_right = 0.794
-anchor_bottom = 0.422
+anchor_top = 0.14
+anchor_right = 0.923
+anchor_bottom = 0.451
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="controller_logs_puntos" type="VBoxContainer" parent="escena_principal/HUD_3/scroll_log_puntos"]
+[node name="debugg_rect" type="ColorRect" parent="escena_principal/HUD_3/lay_log_puntos"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="scroll_log_puntos" type="ScrollContainer" parent="escena_principal/HUD_3/lay_log_puntos"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="controller_logs_puntos" type="VBoxContainer" parent="escena_principal/HUD_3/lay_log_puntos/scroll_log_puntos"]
 layout_mode = 2
 script = ExtResource("4_xxn1a")
 escena_punto = ExtResource("5_2tehr")
 
-[node name="label_titulo_puntos" type="Label" parent="escena_principal/HUD_3/scroll_log_puntos/controller_logs_puntos"]
+[node name="label_titulo_puntos" type="Label" parent="escena_principal/HUD_3/lay_log_puntos/scroll_log_puntos/controller_logs_puntos"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 15
 text = "PUNTOS"
 
-[node name="lay_display_puntos" type="Control" parent="escena_principal/HUD_3/scroll_log_puntos/controller_logs_puntos"]
+[node name="lay_display_puntos" type="Control" parent="escena_principal/HUD_3/lay_log_puntos/scroll_log_puntos/controller_logs_puntos"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="txt_display_puntos" type="RichTextLabel" parent="escena_principal/HUD_3/scroll_log_puntos/controller_logs_puntos/lay_display_puntos"]
+[node name="txt_display_puntos" type="RichTextLabel" parent="escena_principal/HUD_3/lay_log_puntos/scroll_log_puntos/controller_logs_puntos/lay_display_puntos"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -408,40 +515,38 @@ theme_override_font_sizes/normal_font_size = 12
 bbcode_enabled = true
 fit_content = true
 
-[node name="controller_logs_informacion" type="VBoxContainer" parent="escena_principal/HUD_3"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.25
-anchor_top = 0.533
-anchor_right = 0.864
-anchor_bottom = 0.898
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("4_6ru1i")
+[node name="lay_tiempo" type="Control" parent="escena_principal/HUD_3"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="label_titulo_informacion" type="Label" parent="escena_principal/HUD_3/controller_logs_informacion"]
+[node name="controller_labels_tiempo" type="HBoxContainer" parent="escena_principal/HUD_3/lay_tiempo"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("17_ojuur")
+
+[node name="dia" type="Label" parent="escena_principal/HUD_3/lay_tiempo/controller_labels_tiempo"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 15
-text = "INFORMACION"
+text = "Dia 1"
 
-[node name="lay_display_informacion" type="Control" parent="escena_principal/HUD_3/controller_logs_informacion"]
+[node name="mes" type="Label" parent="escena_principal/HUD_3/lay_tiempo/controller_labels_tiempo"]
 layout_mode = 2
-size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = " Mes 1"
 
-[node name="scroll_controller_logs_informacion" type="ScrollContainer" parent="escena_principal/HUD_3/controller_logs_informacion/lay_display_informacion"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="txt_display_informacion" type="RichTextLabel" parent="escena_principal/HUD_3/controller_logs_informacion/lay_display_informacion/scroll_controller_logs_informacion"]
+[node name="año" type="Label" parent="escena_principal/HUD_3/lay_tiempo/controller_labels_tiempo"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 12
-bbcode_enabled = true
-fit_content = true
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Año 1"
+
+[node name="guion" type="Label" parent="escena_principal/HUD_3/lay_tiempo/controller_labels_tiempo"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "|"
+
+[node name="estacion" type="Label" parent="escena_principal/HUD_3/lay_tiempo/controller_labels_tiempo"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Verano"

@@ -5,13 +5,6 @@ signal error_entrega(causa: String)
 signal hormiga_creada(hormiga)
 signal hormiga_muerta(hormiga)
 
-var reina : Reina
-
-#------
-var tiempo_acumulado := 0.0
-var intervalo := 1.0
-#------
-
 var hormigas : Array[Hormiga] = []
 var hormigas_muertas := 0
 
@@ -24,15 +17,8 @@ var produccion_por_hormiga : float = 2.0
 var produccion_por_segundo : float = 0.0
 
 func _ready():
-	reina = Reina.new()
-	reina.controller = self
-	reina.produccion_activa = true
-
-func _process(delta):
-	reina.update(delta)
-	for hormiga in hormigas:
-		hormiga.update(delta)
-	limpiar_hormigas_muertas()
+	ControllerReina.controller = self
+	#ManagerTime.tick.connect(_on_tick)
 
 func entregar_comida(cantidad: int):
 	if comida_actual >= capacidad_comida_total:
@@ -45,6 +31,7 @@ func entregar_comida(cantidad: int):
 func sumar_hormiga():
 	var nueva = Hormiga.new()
 	emit_signal("hormiga_creada",nueva)
+	ManagerTime.tick.connect(nueva._on_tick)
 	hormigas.append(nueva)
 
 func get_cantidad_hormigas() -> int:
